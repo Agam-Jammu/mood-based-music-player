@@ -6,6 +6,7 @@ import SpotifyWebApi from 'spotify-web-api-js';
 
 function App() {
   const [currentSong, setCurrentSong] = useState(null);
+  const [currentSongTitle, setCurrentSongTitle] = useState('');
 
   const fetchRandomSong = async (mood) => {
     const spotifyApi = new SpotifyWebApi();
@@ -32,8 +33,8 @@ function App() {
         const randomIndex = Math.floor(Math.random() * response.tracks.length);
         const randomTrack = response.tracks[randomIndex];
 
-        // Set the new song URL
         setCurrentSong(randomTrack.preview_url);
+        setCurrentSongTitle(randomTrack.name); // Set the song title
       } catch (error) {
         console.error('Error fetching songs:', error);
       }
@@ -43,11 +44,12 @@ function App() {
   return (
     <div className="App">
       <Header />
+      {currentSongTitle && <p>Now Playing: {currentSongTitle}</p>}
       <div className="mood-selection">
         <button onClick={() => fetchRandomSong('Happy')}>Happy</button>
         <button onClick={() => fetchRandomSong('Sad')}>Sad</button>
       </div>
-      <MusicPlayer currentSong={currentSong} />
+      <MusicPlayer currentSong={currentSong} currentSongTitle={currentSongTitle} />
     </div>
   );
 }
