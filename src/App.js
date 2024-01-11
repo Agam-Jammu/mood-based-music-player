@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/header';
 import MusicList from './components/musicList';
 import MusicPlayer from './components/musicPlayer';
+import SpotifyAuth from './components/spotifyAuth';
 
 function App() {
   const [currentSong, setCurrentSong] = useState(null);
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <MusicList playSong={playSong} />
       <MusicPlayer currentSong={currentSong} />
+      <SpotifyAuth />
     </div>
   );
 }
