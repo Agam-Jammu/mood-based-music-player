@@ -7,11 +7,11 @@ const SpotifyAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // // Check if access token exists in local storage
-    // const accessToken = localStorage.getItem('spotifyAccessToken');
-    // if (accessToken) {
-    //   setIsLoggedIn(true); // Update state if access token is present
-    // }
+    // Check if access token exists in local storage
+    const accessToken = localStorage.getItem('spotifyAccessToken');
+    if (accessToken) {
+      setIsLoggedIn(true); // Update state if access token is present
+    }
 
     // Handle the redirect and extract the access token from the URL hash fragment
     const hash = window.location.hash.substring(1).split('&').reduce((initial, item) => {
